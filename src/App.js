@@ -5,6 +5,9 @@ import './app.css'
 import albums from './albums.json'
 import SearchForm from './SearchForm';
 
+//STOPED AT PAGE 7 Step 1
+
+
 const App = () => {
     const [albumList, setAlbumList] = useState([]);
 
