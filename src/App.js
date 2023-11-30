@@ -52,6 +52,10 @@ const updateSingleAlbum = (id, navigate) =>{
     navigate('/show/' + indexNumber)
 }
 
+const onNewAlbum = (navigate) =>{
+    loadAlbums();
+    navigate("/");
+}
 
 return (
     <BrowserRouter>
@@ -67,7 +71,7 @@ return (
                     updateSingleAlbum={updateSingleAlbum}
                     />
                 }/>
-                <Route exact path='/new' element={<NewAlbum />} />
+                <Route exact path='/new' element={<NewAlbum onNewAlbum={onNewAlbum}/>} />
                 <Route
                     exact
                     path='/show/:albumId'
