@@ -13,7 +13,7 @@ const EditAlbum = (props) => {
         tracks: [],
     }
     let newAlbumCreation = true;
-    //TODO: this prop is allways undefined
+    //TODO: this prop is always undefined
     console.log("in albums", props.album)
     if(props.album){
         ourAlbum = props.album;

@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import ReactDOM from 'react-dom';
 import './app.css'
 import dataSource from './dataSource';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
@@ -41,14 +40,14 @@ const updateSingleAlbum = (id, navigate, uri) =>{
     console.log('Update single album = ', id);
     console.log('Update single album = ', navigate);
 
-    //TODO: this is allways returning 0 for currently selected album
+    //TODO: this is always returning 0 for currently selected album
     var indexNumber = 0;
     for(var i = 0 ; i < albumList.length; ++i){
-        if(albumList[i].id === id) indexNumber = i;
+        if(albumList[i].albumId === id) indexNumber = i;
     }
     setCurrentlySelectedAlbumId(indexNumber);
     let path = uri + id;
-    console.log("path", path)
+    console.log("index number", albumList[0].albumId)
     console.log("Current album", currentlySelectedAlbumId);
     navigate(path)
 }
@@ -73,7 +72,7 @@ return (
                     />
                 }/>
                 <Route exact path='/new' element={<EditAlbum onNewAlbum={onNewAlbum}/>} />
-                <Route exact path='/edit/:albumId' element={<EditAlbum onNewAlbum={onNewAlbum} album={albumList.currentlySelectedAlbumId}/>} />
+                <Route exact path='/edit/:albumId' element={<EditAlbum onNewAlbum={onNewAlbum} album={albumList[currentlySelectedAlbumId]}/>}/>
                 <Route
                     exact
                     path='/show/:albumId'

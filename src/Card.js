@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 const Card = (props) => {
     const handleButtonClick = (event, uri) =>{
