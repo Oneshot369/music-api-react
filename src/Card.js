@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const Card = (props) => {
+    const handleButtonClick = (event, uri) =>{
+        console.log("Id clicked is " + props.albumId);
+        props.onClick(props.albumId, uri);
+    }
     return (
         <div>
             <div className="card" style={{ width: "18rem" }}>
@@ -11,7 +15,8 @@ const Card = (props) => {
                     <p className="card-text">
                         {props.albumDescription}
                     </p>
-                    <a href="#" className="btn btn-primary">{props.buttonText}</a>
+                    <button className="btn btn-primary" onClick={() =>handleButtonClick(props.albumId, '/show/')}>{props.buttonText}</button>
+                    <button className="btn btn-primary" onClick={() =>handleButtonClick(props.albumId, '/edit/')}>Edit</button>
                 </div>
             </div>
         </div>

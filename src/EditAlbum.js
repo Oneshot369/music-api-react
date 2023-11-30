@@ -2,7 +2,23 @@ import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import dataSource from "./dataSource";
 
-const NewAlbum = (props) => {
+const EditAlbum = (props) => {
+
+    let ourAlbum={
+        title: "",
+        artist: "",
+        description: "",
+        year: "",
+        image: "",
+        tracks: [],
+    }
+    let newAlbumCreation = true;
+    //TODO: this prop is allways undefined
+    console.log("in albums", props.album)
+    if(props.album){
+        ourAlbum = props.album;
+        newAlbumCreation = false
+    }
     const [albumTitle, setAlbumTitle] = useState('');
     const [artist, setArtist] = useState('');
     const [description, setDescription] = useState('');
@@ -31,6 +47,7 @@ const NewAlbum = (props) => {
         console.log("submit");
 
         const album={
+            albumId: ourAlbum.albumId,
             title: albumTitle,
             artist: artist,
             description: description,
@@ -44,9 +61,17 @@ const NewAlbum = (props) => {
     }
 
     const saveAlbum = async (album) =>{
-        const responce = await dataSource.post('/albums', album);
-        console.log("here",responce);
-        console.log(responce.data);
+        let response;
+        if(newAlbumCreation){
+            response = await dataSource.post('/albums', album);
+        }
+        else{
+            response = await dataSource.put('/albums', album);
+        }
+        
+
+        console.log(response);
+        console.log(response.data);
         props.onNewAlbum(navigate);
     }
 
@@ -56,7 +81,7 @@ const NewAlbum = (props) => {
 
     return <div>
         <form className="container" onSubmit={handleFormSubmit}>
-            <h1>Create Album</h1>
+            <h1>{newAlbumCreation ? "Create New": "Edit"} album</h1>
             <div className="mb-3 container">
                 <label htmlFor="exampleInputEmail1" className="form-label">
                     Album Title
@@ -122,4 +147,4 @@ const NewAlbum = (props) => {
 
     </div>;
 };
-export default NewAlbum;
+export default EditAlbum;

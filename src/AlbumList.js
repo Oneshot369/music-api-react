@@ -3,15 +3,16 @@ import Card from "./Card";
 import { useNavigate } from "react-router-dom";
 
 const AlbumList = (props) => {
-    const handleSectionOne = (albumId) =>{
+    const handleSectionOne = (albumId, uri) =>{
         console.log('Selected Id is' + albumId);
-        props.onClick(albumId, navigator);
+        props.onClick(albumId, navigator, uri);
     };
     console.log('props albumList', props);
     const navigator = useNavigate();
     const albums = props.albumList.map((album) =>{
         return (
-            < Card key = {album.artistId} 
+            < Card key = {album.albumId} 
+            albumId= {album.albumId}
             albumTitle = {album.title}
             albumDescription = {album.description}
             buttonText = 'OK'
